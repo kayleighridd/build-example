@@ -25,3 +25,9 @@ npm run build
 ```
 
 # Known Issues
+
+- The Storybook runs on uncompiled css, but should run the bundled version
+- We currently need to run the `dev` task as well as the storybook in order to compile css for development use
+- The css bundle that is created does not maintain classnames
+- The documentation does not show Markdown in the "View code" feature
+-
