@@ -11,10 +11,10 @@ const paths = {
   src: path.resolve(__dirname, "./src"),
 
   // Production build files
-  build: path.resolve(__dirname, "../dist"),
+  build: path.resolve(__dirname, "./dist"),
 
   // Static files that get copied to build folder
-  public: path.resolve(__dirname, "../public"),
+  public: path.resolve(__dirname, "./public"),
 };
 
 module.exports = {
@@ -28,24 +28,6 @@ module.exports = {
     filename: "js/[name].[contenthash].bundle.js",
   },
 
-  plugins: [
-    // Removes/cleans build folders and unused assets when rebuilding
-    new CleanWebpackPlugin(),
-
-    // Copies files from target to destination folder
-    new CopyWebpackPlugin({
-      patterns: [
-        {
-          from: paths.public,
-          to: "assets",
-          globOptions: {
-            ignore: ["*.DS_Store"],
-          },
-          noErrorOnMissing: true,
-        },
-      ],
-    }),
-  ],
   module: {
     rules: [
       {
@@ -67,13 +49,19 @@ module.exports = {
       { test: /\.js$/, exclude: /node_modules/, use: ["babel-loader"] },
 
       // Images: Copy image files to build folder
-      { test: /\.(?:ico|gif|png|jpg|jpeg)$/i, type: "asset/resource" },
+      {
+        test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
+        type: "asset/resource",
+      },
 
       // Fonts and SVGs: Inline files
       { test: /\.(woff(2)?|eot|ttf|otf|svg|)$/, type: "asset/inline" },
     ],
   },
   plugins: [
+    // Removes/cleans build folders and unused assets when rebuilding
+    new CleanWebpackPlugin(),
+
     // Extracts CSS into separate files
     // Note: style-loader is for development, MiniCssExtractPlugin is for production
     new MiniCssExtractPlugin({
