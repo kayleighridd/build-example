@@ -6,8 +6,7 @@
   "author": "Tania Rascia",
   "license": "MIT",
   "scripts": {
-    "start": "cross-env NODE_ENV=development webpack serve --config config/webpack.dev.js",
-    "build": "cross-env NODE_ENV=production webpack --config config/webpack.prod.js",
+    "build": "cross-env NODE_ENV=production webpack --config webpack.prod.js",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
@@ -30,6 +29,8 @@
     "cross-env": "^7.0.2",
     "css-loader": "^5.0.0",
     "css-minimizer-webpack-plugin": "^1.1.5",
+    "handlebars": "^4.7.6",
+    "handlebars-loader": "^1.7.1",
     "html-webpack-plugin": "^5.0.0-alpha.7",
     "mini-css-extract-plugin": "^1.0.0",
     "node-sass": "^4.14.1",
@@ -46,8 +47,5 @@
     "type": "git",
     "url": "git@github.com:taniarascia/webpack-boilerplate"
   },
-  "dependencies": {
-    "handlebars": "^4.7.6",
-    "handlebars-loader": "^1.7.1"
-  }
+  "dependencies": {}
 }

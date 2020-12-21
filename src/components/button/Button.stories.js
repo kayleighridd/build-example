@@ -1,12 +1,10 @@
 import Button from "./button.handlebars";
-import "./button.css"; // TODO: Use compiled version
 
 const controls = {
   title: "Example/Button",
   argTypes: {
     label: { control: "text" },
-    primary: { control: "boolean" },
-    backgroundColor: { control: "color" },
+    variant: { type: "select", options: ["primary", "secondary"] },
     size: {
       control: { type: "select", options: ["small", "medium", "large"] },
     },
@@ -17,30 +15,43 @@ const controls = {
 
 // You can either use a function to create DOM elements or use a plain html string!
 // return `<div>${label}</div>`;
-const Template = ({ primary, ...args }) =>
+// const Template = ({ primary, label = "button", size = "medium", ...args }) =>
+//   `<div class="${[
+//     styles.button,
+//     styles[`button--${size}`],
+//     styles[`button--${primary ? "primary" : "secondary"}`],
+//   ].join(" ")}
+// ">${label}</div>`;
+
+const Template = ({ ...args }) =>
   Button({
     label: "Button",
     size: "medium",
-    variant: primary ? "primary" : "secondary",
     ...args,
   });
 
 export const Primary = Template.bind({});
 Primary.args = {
-  primary: true,
+  variant: "primary",
+};
+Primary.parameters = {
+  docs: {
+    source: {
+      code: Template(Primary.args),
+    },
+  },
 };
 
 export const Secondary = Template.bind({});
-Secondary.args = {};
-
-export const Large = Template.bind({});
-Large.args = {
-  size: "large",
+Secondary.args = {
+  variant: "secondary",
 };
-
-export const Small = Template.bind({});
-Small.args = {
-  size: "small",
+Secondary.parameters = {
+  docs: {
+    source: {
+      code: Template(Secondary.args),
+    },
+  },
 };
 
 export default controls;
